@@ -1,9 +1,10 @@
 import { useState } from "react";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
     <div className="App">
-      <div className="text-[20px]">React + Tailwindss</div>
+      <Dashboard />
     </div>
   );
 }
