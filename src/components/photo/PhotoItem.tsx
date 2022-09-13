@@ -1,10 +1,10 @@
 import React from "react";
-import Img from "../../app/models/image";
+import { Photo } from "../../app/models/photo";
 
-function PhotoItem(item: Img) {
+function PhotoItem(item: Photo) {
   return (
     <div className="h-min w-full">
-      <img src={item.url} alt="" />
+      <img src={item.urls.small} alt={item.alt_description} />
     </div>
   );
 }
