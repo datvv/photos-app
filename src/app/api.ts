@@ -8,6 +8,14 @@ export function fetchImages(page: number, pageSize: number) {
   });
 }
 
+export function fetchDetailImage(id: string) {
+  return new Promise<any>((resolve) => {
+    setTimeout(() => {
+      resolve(IMAGE_LIST.filter((item) => item.id == id)[0]);
+    }, 100);
+  });
+}
+
 function getImages(page: number, pageSize: number) {
   const start = (page - 1) * pageSize;
   const end = page * pageSize;

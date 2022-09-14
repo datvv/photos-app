@@ -16,8 +16,8 @@ const Cover = () => {
             Powered by creators everywhere.
           </h3>
         </div>
-        {/* Search area */}
         <div>
+          {/* Search area */}
           <Search />
         </div>
       </div>

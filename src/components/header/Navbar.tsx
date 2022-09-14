@@ -5,7 +5,7 @@ import Avatar from "./Avatar";
 const Navbar = () => {
   return (
     <div>
-      <nav className="flex items-center gap-4 py-3 border-2 border-gray-600">
+      <nav className="flex items-center gap-4 py-3 border-2 ">
         <div className="w-11 h-11 ml-3">
           <img src={logo} alt="unsplash-logo" className="w-full h-full" />
         </div>

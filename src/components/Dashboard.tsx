@@ -1,6 +1,6 @@
 import React from "react";
 import Cover from "./Cover";
-import Collection from "./Collection";
+import Collection from "./photo/Collection";
 import Header from "./header/Header";
 
 const Dashboard = () => {

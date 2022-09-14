@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { fetchImages } from "../app/api";
-import { Photo } from "../app/models/photo";
-import PhotoItem from "./photo/PhotoItem";
-import { PAGE_SIZE } from "../app/constants";
+import { fetchImages } from "./../../app/api";
+import { Photo } from "../../app/models/photo";
+import PhotoItem from "./PhotoItem";
+import { PAGE_SIZE } from "../../app/constants";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import PhotoGallery from "./PhotoGallery";
 
 const Collection = () => {
   let page = 0;
 
-  const [isLoading, setIsLoading] = useState(false);
   const [photos, setPhotos] = useState<Photo[]>([]);
+
+  const [showDetailPhoto, setShowDetailPhoto] = useState({
+    show: false,
+    imageId: "",
+  });
+  const togglePopup = () => {
+    setShowDetailPhoto((detail) => ({ ...detail, show: !detail.show }));
+  };
+
+  const show = (imageId: string) => {
+    setShowDetailPhoto((detail) => ({ show: !detail.show, imageId }));
+  };
 
   async function loadPhotos() {
     page = page + 1;
@@ -39,15 +51,20 @@ const Collection = () => {
 
   return (
     <div className="max-w-[1230px] m-auto mt-5">
-      <div>
+      <div className="cursor-pointer">
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
           <Masonry gutter="20px">
             {photos.map((item: any, index) => (
-              <PhotoItem key={index} {...item} />
+              <div key={index} onClick={() => show(item.id)}>
+                <PhotoItem key={index} {...item} />
+              </div>
             ))}
           </Masonry>
         </ResponsiveMasonry>
       </div>
+      {showDetailPhoto && showDetailPhoto.show && (
+        <PhotoGallery togglePopup={togglePopup} id={showDetailPhoto.imageId} />
+      )}
     </div>
   );
 };

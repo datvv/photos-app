@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Photo } from "../../app/models/photo";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
