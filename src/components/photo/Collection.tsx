@@ -25,9 +25,12 @@ const Collection = () => {
 
   async function loadPhotos() {
     page = page + 1;
-    const data = await fetchImages(page, PAGE_SIZE);
+    const result = await fetchImages(page, PAGE_SIZE);
+    const data: any = result?.response?.results;
     let list: any = [];
-    data.forEach((p: any) => list.push(p));
+    if (data && data.length > 0) {
+      data.forEach((p: any) => list.push(p));
+    }
     setPhotos((prev) => [...prev].concat(list));
   }
 

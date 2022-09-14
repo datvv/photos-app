@@ -1,5 +1,20 @@
 import { IMAGE_LIST } from "./data/fake-data";
+import { baseApi } from "./baseApi";
 
+export function fetchImages(page: number, pageSize: number) {
+  return baseApi.photos.list({ page: page, perPage: pageSize });
+}
+
+export function fetchDetailImage(photoId: string) {
+  return baseApi.photos.get({ photoId: photoId });
+}
+
+export function fetchRandomPhoto(condition: any) {
+  return baseApi.photos.getRandom(condition);
+}
+
+// Fake request and Data
+/*
 export function fetchImages(page: number, pageSize: number) {
   return new Promise<any>((resolve) => {
     setTimeout(() => {
@@ -22,8 +37,9 @@ function getImages(page: number, pageSize: number) {
   return IMAGE_LIST.slice(start, end);
 }
 
-// function randomImages(number: number) {
-//   return IMAGE_LIST.sort(function () {
-//     return 0.5 - Math.random();
-//   }).slice(0, number);
-// }
+function randomImages(number: number) {
+  return IMAGE_LIST.sort(function () {
+    return 0.5 - Math.random();
+  }).slice(0, number);
+}
+*/
