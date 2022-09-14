@@ -11,8 +11,7 @@ export function fetchImages(page: number, pageSize: number) {
 function getImages(page: number, pageSize: number) {
   const start = (page - 1) * pageSize;
   const end = page * pageSize;
-  const images = IMAGE_LIST.slice(start, end);
-  return images;
+  return IMAGE_LIST.slice(start, end);
 }
 
 // function randomImages(number: number) {

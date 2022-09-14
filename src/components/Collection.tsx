@@ -3,6 +3,7 @@ import { fetchImages } from "../app/api";
 import { Photo } from "../app/models/photo";
 import PhotoItem from "./photo/PhotoItem";
 import { PAGE_SIZE } from "../app/constants";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 const Collection = () => {
   let page = 0;
@@ -29,7 +30,7 @@ const Collection = () => {
 
   const handleScroll = async (e: any) => {
     if (
-      window.innerHeight + e.target.documentElement.scrollTop + 1 >=
+      window.innerHeight + e.target.documentElement.scrollTop + 10 >=
       e.target.documentElement.scrollHeight
     ) {
       await loadPhotos();
@@ -37,10 +38,16 @@ const Collection = () => {
   };
 
   return (
-    <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 p-8 max-w-[1230px] m-auto mt-5">
-      {photos.map((item: any, index) => (
-        <PhotoItem key={index} {...item} />
-      ))}
+    <div className="max-w-[1230px] m-auto mt-5">
+      <div>
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+          <Masonry gutter="20px">
+            {photos.map((item: any, index) => (
+              <PhotoItem key={index} {...item} />
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      </div>
     </div>
   );
 };
